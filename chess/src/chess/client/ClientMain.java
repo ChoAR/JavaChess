@@ -1,4 +1,4 @@
-package chsee.client;
+package chess.client;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;

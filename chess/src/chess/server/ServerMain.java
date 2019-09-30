@@ -1,10 +1,10 @@
 package chess.server;
 
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class ServerMain {
 	ServerSocket server;
@@ -27,10 +27,12 @@ public class ServerMain {
 				System.out.println("connected");
 				
 				ServerReader sr = new ServerReader(socket);
-				
 			}
 			
-		} catch (Exception e) {
+		} catch(SocketException se) {
+			System.out.println("disconnected");
+			se.printStackTrace();
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

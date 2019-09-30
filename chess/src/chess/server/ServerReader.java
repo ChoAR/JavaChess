@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Scanner;
 
 public class ServerReader implements Runnable{
@@ -18,8 +19,6 @@ public class ServerReader implements Runnable{
 	public ServerReader(Socket socket) {
 		try {
 			
-			
-			
 			this.socket = socket;
 			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			
@@ -28,8 +27,9 @@ public class ServerReader implements Runnable{
 			t.start();
 			System.out.println("Create Receive");
 			
-			
-		} catch (Exception e) {
+		} catch(SocketException se) {
+			System.out.println("disconnected");
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -44,8 +44,10 @@ public class ServerReader implements Runnable{
 				if((msg = br.readLine())!= null) {
 					System.out.println(msg);
 				}
-			} catch (IOException e) {
-				
+			} catch(SocketException se) {
+				se.printStackTrace();
+				System.out.println("disconnected");
+			}catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
