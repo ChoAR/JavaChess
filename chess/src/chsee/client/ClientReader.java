@@ -1,4 +1,4 @@
-package chess.server;
+package chsee.client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,50 +7,54 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class ServerReader implements Runnable{
-
+public class ClientReader implements Runnable{
+	
 	Socket socket;
 	BufferedReader br;
+	PrintWriter pw;
 	
-	
-	
-	public ServerReader() {}
-	public ServerReader(Socket socket) {
+	public ClientReader() {}
+	public ClientReader(Socket socket) {
+		this.socket = socket;
+		
 		try {
-			
-			
-			
-			this.socket = socket;
 			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			
-			// Reader 만들고 Thread 생성
+			Scanner s = new Scanner(System.in);
 			Thread t = new Thread(this);
 			t.start();
-			System.out.println("Create Receive");
+			System.out.println("---- Thread run");
 			
-			
-		} catch (Exception e) {
+			pw = new PrintWriter(socket.getOutputStream());
+			while(true) {
+				System.out.println("enter : ");
+				String str = s.next();
+				pw.println(str);
+				pw.flush();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 	@Override
 	public void run() {
-		int tag = 0;
 		String msg = "";
+		int tag = 0;
 		
 		while(true) {
 			try {
-				if((msg = br.readLine())!= null) {
+				if((msg = br.readLine()) != null) {
 					System.out.println(msg);
 				}
 			} catch (IOException e) {
-				
 				e.printStackTrace();
 			}
 		}
 		
 	}
+	
+	
 	
 	
 }

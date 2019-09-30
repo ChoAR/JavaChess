@@ -25,9 +25,9 @@ public class ServerMain {
 				System.out.println("waiting..");
 				Socket socket = server.accept();
 				System.out.println("connected");
-				br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				String msg = br.readLine();
-				System.out.println(msg);
+				
+				ServerReader sr = new ServerReader(socket);
+				
 			}
 			
 		} catch (Exception e) {

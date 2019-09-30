@@ -19,9 +19,8 @@ public class ClientMain {
 		try {
 			socket = new Socket("localhost", PORT );
 			
-			pw = new PrintWriter(socket.getOutputStream());
-			pw.write("Hi I'm Groot");
-			pw.flush();
+			ClientReader cr = new ClientReader(socket);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
