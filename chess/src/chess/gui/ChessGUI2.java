@@ -1,5 +1,5 @@
-package chess.gui;
-// Ï¥àÍ∏∞ÌôîÎ©¥ ÎßåÎì§Ïûê!
+package chess;
+// √ ±‚»≠∏È ∏∏µÈ¿⁄!
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
@@ -7,11 +7,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 
-public class ChessGUI2 extends JFrame {
+public class ChessGUI2 extends JFrame implements ActionListener{
 	JPanel chessGame = new JPanel(); // Center
 	GridBagLayout gb;
 	GridBagConstraints gbc;
@@ -27,7 +29,15 @@ public class ChessGUI2 extends JFrame {
     public static final int BLACK = 0, WHITE = 1;
     JTextArea chatArea = new JTextArea(10,50);
     JTextField chatField = new JTextField(70);
-    JButton chatButton = new JButton("ÏûÖÎ†•");
+    JLabel GoldPlayer = new JLabel("GoldPlayer : ");
+    JLabel WhitePlayer = new JLabel("WhitePlayer : ");
+    JLabel Name1 = new JLabel("Name1");
+    JLabel Name2 = new JLabel("Name2");
+    JButton chatButton = new JButton("¿‘∑¬");
+    JButton GoldStart = new JButton("Ready");
+    JButton WhiteStart = new JButton("Ready");
+    JButton GiveUp1 = new JButton("GiveUp");
+    JButton GiveUp2 = new JButton("GiveUp");
 	public ChessGUI2(){
 		gb = new GridBagLayout();
 		gbc = new GridBagConstraints();
@@ -35,6 +45,20 @@ public class ChessGUI2 extends JFrame {
 		gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
+        JToolBar tools = new JToolBar();
+        tools.setFloatable(false);
+        tools.setBackground(Color.GRAY);
+        gbinsert(tools, 0, 0, 1, 1);
+        Action newGameAction = new AbstractAction("New") {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setupNewGame();
+            }
+        };
+        tools.add(newGameAction);
+        player1.setLayout(null);
+        player2.setLayout(null);
 		chessBoard.setLayout(new GridLayout(8, 8));
         chessBoard.setBorder(new CompoundBorder(new EmptyBorder(8,8,8,8),new LineBorder(Color.BLACK)));
         Color backgroundColor = new Color(204,119,34);
@@ -70,6 +94,7 @@ public class ChessGUI2 extends JFrame {
 	            chessBoard.add(b);
 	        }
 	    }
+	    /*
 	    for (int ii = 0; ii < 8; ii++) {
 	        chessBoardSquares[ii][0].setIcon(new ImageIcon(chessPieceImages[BLACK][STARTING_ROW[ii]]));
 	    }
@@ -82,24 +107,104 @@ public class ChessGUI2 extends JFrame {
 	    }
 	    for (int ii = 0; ii < 8; ii++) {
 	        chessBoardSquares[ii][7].setIcon(new ImageIcon(chessPieceImages[WHITE][STARTING_ROW[ii]]));
-	    }
+	    }*/
 	    for (int ii = 0; ii < 8; ii++) {
             for (int jj = 0; jj < 8; jj++) {
              chessBoard.add(chessBoardSquares[ii][jj]);
             }
         }
-	    player1.setBackground(Color.RED);
-	    //player1.setSize(500,600);
-	    player2.setBackground(Color.BLUE);
-	    //player2.setSize(500,600);
-	    //chessBoard.setSize(600,600);
-	       gbinsert(player1, 0, 0, 1, 1);
-	    gbinsert(chessBoard, 1, 0, 1, 1);
-	       gbinsert(player2, 2, 0, 1, 1);
+	    player1.setBackground(Color.LIGHT_GRAY);
+	    player1.add(GoldPlayer);
+	    GoldPlayer.setBounds(20, 20, 100, 20);
+	    player1.add(Name1);
+	    Name1.setBounds(20, 50, 100, 20);
+	    player1.add(GoldStart);
+	    GoldStart.setBounds(20, 80, 100, 30);
+	    player1.add(GiveUp1);
+	    GiveUp1.setBounds(20, 120, 100, 30);
+	    
+	    player2.setBackground(Color.LIGHT_GRAY);
+	    player2.add(WhitePlayer);
+	    WhitePlayer.setBounds(20, 20, 100, 20);
+	    player2.add(Name2);
+	    Name2.setBounds(20, 50, 100, 20);
+	    player2.add(WhiteStart);
+	    WhiteStart.setBounds(20, 80, 100, 30);
+	    player2.add(GiveUp2);
+	    GiveUp2.setBounds(20, 120, 100, 30);
+	    
+	       gbinsert(player1, 0, 1, 1, 1);
+	    gbinsert(chessBoard, 1, 1, 1, 1);
+	       gbinsert(player2, 2, 1, 1, 1);
 	    chattingInput.add(chatField);
 	    chattingInput.add(chatButton);
 	    chatting.add(chatArea, BorderLayout.CENTER);
 	    chatting.add(chattingInput, BorderLayout.SOUTH);
+	    
+	    GoldStart.addActionListener(new ActionListener() {
+	    	@Override
+	    	public void actionPerformed(ActionEvent e) {
+	    		JButton GoldStart = (JButton) e.getSource();
+				if(GoldStart.getText().equals("Ready")) {
+					GoldStart.setText("Start Game");
+					GoldStart.setBackground(Color.red);
+				}
+				/*
+				else {
+					GoldStart.setText("Ready");
+					GoldStart.setBackground(Color.white);
+				} 		
+				*/
+	    	}
+	    });
+	    WhiteStart.addActionListener(new ActionListener() {
+	    	@Override
+	    	public void actionPerformed(ActionEvent e) {
+	    		JButton WhiteStart = (JButton) e.getSource();
+				if(WhiteStart.getText().equals("Ready")) {
+					WhiteStart.setText("Start Game");
+					WhiteStart.setBackground(Color.red);
+				}
+				/*
+				else {
+					WhiteStart.setText("Ready");
+					WhiteStart.setBackground(Color.white);
+				} 		
+				*/
+	    	}
+	    });
+	    GiveUp1.addActionListener(new ActionListener() {
+	    	@Override
+	    	public void actionPerformed(ActionEvent e) {
+	    		JButton WhiteStart = (JButton) e.getSource();
+				if(WhiteStart.getText().equals("GiveUp")) {
+					WhiteStart.setText("End Game");
+					WhiteStart.setBackground(Color.yellow);
+				}
+				/*
+				else {
+					WhiteStart.setText("Ready");
+					WhiteStart.setBackground(Color.white);
+				} 
+				*/		
+	    	}
+	    });
+	    GiveUp2.addActionListener(new ActionListener() {
+	    	@Override
+	    	public void actionPerformed(ActionEvent e) {
+	    		JButton WhiteStart = (JButton) e.getSource();
+				if(WhiteStart.getText().equals("GiveUp")) {
+					WhiteStart.setText("End Game");
+					WhiteStart.setBackground(Color.yellow);
+				}
+				/*
+				else {
+					WhiteStart.setText("Ready");
+					WhiteStart.setBackground(Color.white);
+				} 
+				*/		
+	    	}
+	    });
 	}
     public void gbinsert(JComponent c, int x, int y, int w, int h){
         gbc.gridx = x;
@@ -108,17 +213,34 @@ public class ChessGUI2 extends JFrame {
         gbc.gridheight = h;
         chessGame.add(c, gbc);
     }
-    /*
-	public static void main(String[] args) {
-		ChessGUI2 cg = new ChessGUI2();
-        JFrame f = new JFrame("ÏÜåÏºìÏùÑ ÌôúÏö©Ìïú 1:1 Ï≤¥Ïä§Í≤åÏûÑ");
-        f.setLayout(new BorderLayout());
-        f.add(cg.chessGame, BorderLayout.CENTER);
-        f.add(cg.chatting, BorderLayout.SOUTH);
-        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        f.pack();
-        f.setVisible(true);
-        f.setSize(1000,1000);
+    
+    private final void setupNewGame() {
+        //message.setText("Make your move!");
+        // set up the black pieces
+        for (int ii = 0; ii < STARTING_ROW.length; ii++) {
+            chessBoardSquares[ii][0].setIcon(new ImageIcon(
+                    chessPieceImages[BLACK][STARTING_ROW[ii]]));
+        }
+        for (int ii = 0; ii < STARTING_ROW.length; ii++) {
+            chessBoardSquares[ii][1].setIcon(new ImageIcon(
+                    chessPieceImages[BLACK][PAWN]));
+        }
+        // set up the white pieces
+        for (int ii = 0; ii < STARTING_ROW.length; ii++) {
+            chessBoardSquares[ii][6].setIcon(new ImageIcon(
+                    chessPieceImages[WHITE][PAWN]));
+        }
+        for (int ii = 0; ii < STARTING_ROW.length; ii++) {
+            chessBoardSquares[ii][7].setIcon(new ImageIcon(
+                    chessPieceImages[WHITE][STARTING_ROW[ii]]));
+        }
+    }
+       
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
-	*/
+
+    
 }

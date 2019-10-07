@@ -1,18 +1,18 @@
-package chess.gui;
+package chess;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import javax.swing.*;
 import java.awt.*;
-public class Register extends JFrame {//íšŒì›ê°€ì…í™”ë©´
+public class Register extends JFrame {//È¸¿ø°¡ÀÔÈ­¸é
 	public Register(){
 		  	JPanel p = new JPanel();
 		  	Label l1= new Label("ID");	
 	        Label l2 = new Label("PASSWORD");
-	        Label l3= new Label("PASSWORD check");
-	        Label l4 = new Label("nickname");
-		/* Label l5 = new Label("ë‹‰ë„¤ì„"); */
+	        Label l3= new Label("PASSWORD È®ÀÎ");
+	        Label l4 = new Label("´Ğ³×ÀÓ");
+		/* Label l5 = new Label("´Ğ³×ÀÓ"); */
 	        add(l1);
 	        add(l2);
 	        add(l3);
@@ -29,8 +29,8 @@ public class Register extends JFrame {//íšŒì›ê°€ì…í™”ë©´
 	        add(t4);
 		/* add(t5); */
 	        t3.setEchoChar('*');
-	        JButton j1 = new JButton("ì €ì¥");
-	        JButton j2 = new JButton("ì·¨ì†Œ");
+	        JButton j1 = new JButton("ÀúÀå");
+	        JButton j2 = new JButton("Ãë¼Ò");
 	        add(j1);
 	        add(j2);
 	        
@@ -50,27 +50,33 @@ public class Register extends JFrame {//íšŒì›ê°€ì…í™”ë©´
 	        j2.setBounds(250, 240, 80, 30); 
 	    add(p);
 		setSize(450,350);
-		setTitle("íšŒì›ê°€ì…");
+		setTitle("È¸¿ø°¡ÀÔ");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        setVisible(true);
        j1.addActionListener(new ActionListener() {
 		@Override
-		public void actionPerformed(ActionEvent T) {//íšŒì›ê°€ì… ë°ì´í„° ì €ì¥
+		 public void actionPerformed(ActionEvent T) {//È¸¿ø°¡ÀÔ µ¥ÀÌÅÍ ÀúÀå
 			try{
-				BufferedWriter bos = new BufferedWriter(new FileWriter("íšŒì›ëª…ë‹¨.txt",true));
+				BufferedWriter bos = new BufferedWriter(new FileWriter("È¸¿ø¸í´Ü.txt",true));
 				bos.write(t1.getText()+"/");
 				bos.write(t2.getText()+"/");
 				bos.write(t3.getText()+"/");
 				bos.write(t4.getText()+"\r\n");
 					/* bos.write(t5.getText()+"\r\n"); */
 				bos.close();
-				JOptionPane.showMessageDialog(null, "íšŒì›ê°€ì…ì„ ì¶•í•˜í•©ë‹ˆë‹¤!!");
+				JOptionPane.showMessageDialog(null, "È¸¿ø°¡ÀÔÀ» ÃàÇÏÇÕ´Ï´Ù!!");
 				dispose();
 			}catch (Exception ex){
-				JOptionPane.showMessageDialog(null, "íšŒì›ê°€ì…ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
+				JOptionPane.showMessageDialog(null, "È¸¿ø°¡ÀÔ¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
 			}
-		}
-	});
+		 } 
+	   });
+       j2.addActionListener(new ActionListener() {
+   		@Override
+   		 public void actionPerformed(ActionEvent T) {//È¸¿ø°¡ÀÔ µ¥ÀÌÅÍ ÀúÀå
+   			dispose();
+   		 } 
+   	   });
 	}    
 }
 

@@ -1,44 +1,44 @@
-package chess.gui;
-
+package chess;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
-
-public class Login extends JFrame {// ë¡œê·¸ì¸í™”ë©´
+public class Login extends JFrame{//·Î±×ÀÎÈ­¸é
 	Image img = null;
-
-	public Login() {
+	public ex1()
+	{
+		try {
+			String path = ex1.class.getResource("").getPath();
+			File sourceimage = new File(path+"chessImage.png");
+			img = ImageIO.read(sourceimage);
+		} catch (IOException e) {
+			System.out.println("ÀÌ¹ÌÁöÆÄÀÏÀÌ ¾ø½À´Ï´Ù.");
+		}
+		JLabel label = new JLabel(new ImageIcon(img));
 		JPanel p = new JPanel();
-		p.setLayout(null);
-		/*
-		 * JLabel label = new JLabel(new ImageIcon("D:\\ë¸”ë¡œê·¸\\project\\123.jpg"));
-		 * add(label); Label t1= new Label("ì•ˆë…•í•˜ì„¸ìš”."); add(t1); Label t2= new
-		 * Label("ë³¸ í”„ë¡œê·¸ë¨ì€ IDë¥¼ ì…ë ¥í•˜ì…”"); add(t2); Label t3= new Label("ì•¼ë§Œ ì‚¬ìš©ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
-		 * add(t3); Label t4= new Label("IDì…ë ¥ í›„ ë¡œê·¸ì¸ ë²„íŠ¼ì„ í´ë¦­í•˜ì„¸ìš”."); add(t4);
-		 */
-		Label b2 = new Label("ID: ");
+        p.setLayout(null);
+        add(label);
+		Label b2= new Label("¾ÆÀÌµğ:");
 		add(b2);
-		Label b3 = new Label("PASSWORD: ");
+		Label b3= new Label("ºñ¹Ğ¹øÈ£:");
 		add(b3);
 		TextField b4 = new TextField();
 		add(b4);
 		TextField b5 = new TextField();
 		add(b5);
-		b5.setEchoChar('*');// ì•”í˜¸í™”
-		JButton b6 = new JButton("ë¡œê·¸ì¸");
+		b5.setEchoChar('*');//¾ÏÈ£È­
+		JButton b6 = new JButton("·Î±×ÀÎ");
 		add(b6);
-		JButton b7 = new JButton("íšŒì›ê°€ì…");
+		JButton b7 = new JButton("È¸¿ø°¡ÀÔ");
 		add(b7);
-
-		/* label.setBounds(0, 5, 350, 255); */
-		/*
-		 * t1.setBounds(350, 5, 70, 40); t2.setBounds(350,35, 280, 40);
-		 * t3.setBounds(350, 65,150, 40); t4.setBounds(350,95,250, 40);
-		 */
+		
+		label.setBounds(0, 0, 600, 250);
 		b2.setBounds(40, 265, 40, 40);
 		b3.setBounds(40, 305, 60, 40);
 		b4.setBounds(150, 265, 200, 30);
@@ -48,46 +48,56 @@ public class Login extends JFrame {// ë¡œê·¸ì¸í™”ë©´
 		add(p);
 		setSize(560, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("ë¡œê·¸ì¸ í™”ë©´ ");
+		setTitle("·Î±×ÀÎ È­¸é ");
 		setVisible(true);
 		b7.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {// íšŒì›ê°€ì…ì°½ìœ¼ë¡œ ì´ë™
+			public void actionPerformed(ActionEvent e) {//È¸¿ø°¡ÀÔÃ¢À¸·Î ÀÌµ¿
 				// TODO Auto-generated method stub
-				Register f2 = new Register();
+				ex2 f2= new ex2();
 			}
-		});
+		});;
 		b6.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e2) {// ë¡œê·¸ì¸ í• ë•Œ
+			public void actionPerformed(ActionEvent e2) {//·Î±×ÀÎ ÇÒ¶§ 
 				// TODO Auto-generated method stub
-				try {
+				try{
 					String s;
 					String[] array;
-					BufferedReader bos = new BufferedReader(new FileReader("íšŒì›ëª…ë‹¨.txt"));
-					while ((s = bos.readLine()) != null) {
-						array = s.split("/");
-						if (b4.getText().equals(array[1]) && b5.getText().equals(array[2])) {
-							JOptionPane.showMessageDialog(null, "ë¡œê·¸ì¸ì´ ë˜ì—ˆìŠµë‹ˆë‹¤!!");
-							ChessGUI2 cg = new ChessGUI2();
-							JFrame f = new JFrame("ì†Œì¼“ì„ í™œìš©í•œ 1:1 ì²´ìŠ¤ê²Œì„");
-							f.setLayout(new BorderLayout());
-							f.add(cg.chessGame, BorderLayout.CENTER);
-							f.add(cg.chatting, BorderLayout.SOUTH);
-							f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-							f.pack();
-							f.setVisible(true);
-							f.setSize(1000, 1000);
-						} else {
-							JOptionPane.showMessageDialog(null, "ë¡œê·¸ì¸ì´ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.");
-						}
+					BufferedReader bos = new BufferedReader(new FileReader("È¸¿ø¸í´Ü.txt"));
+					while((s=bos.readLine())!=null){
+						array=s.split("/");
+					if(b4.getText().equals(array[1])&&b5.getText().equals(array[2]))
+					{
+						JOptionPane.showMessageDialog(null, "·Î±×ÀÎÀÌ µÇ¾ú½À´Ï´Ù!!");
+						ChessGUI2 cg = new ChessGUI2();
+				        JFrame f = new JFrame("¼ÒÄÏÀ» È°¿ëÇÑ 1:1 Ã¼½º°ÔÀÓ");
+				        f.setLayout(new BorderLayout());
+				        f.add(cg.chessGame, BorderLayout.CENTER);
+				        f.add(cg.chatting, BorderLayout.SOUTH);
+				        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				        f.pack();
+				        f.setVisible(true);
+				        f.setSize(1000,1000);
+					}
+					else 
+					{
+						JOptionPane.showMessageDialog(null, "·Î±×ÀÎÀÌ ½ÇÆĞÇÏ¿´½À´Ï´Ù.");
+					}
 					}
 					bos.close();
 					dispose();
-				} catch (IOException E10) {
+				}catch (IOException E10){
 					E10.printStackTrace();
 				}
 			}
 		});
 	}
+	/*
+	 * public static void main(String[] args) {//·Î±×ÀÎÈ­¸éÀ¸·Î ½ÇÇà // TODO Auto-generated
+	 * method stub Login f = new Login();
+	 * 
+	 * }
+	 */
 }
+
