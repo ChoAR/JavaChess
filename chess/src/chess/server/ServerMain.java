@@ -31,7 +31,7 @@ public class ServerMain {
 			
 		} catch(SocketException se) {
 			System.out.println("disconnected");
-			se.printStackTrace();
+			se.printStackTrace();			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

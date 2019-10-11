@@ -3,10 +3,8 @@ package chess.server;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.Scanner;
 
 public class ServerReader implements Runnable{
 
@@ -47,11 +45,11 @@ public class ServerReader implements Runnable{
 			} catch(SocketException se) {
 				se.printStackTrace();
 				System.out.println("disconnected");
+				break;
 			}catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		
 	}
 	
 	
