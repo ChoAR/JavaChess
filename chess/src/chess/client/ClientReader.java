@@ -5,9 +5,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Scanner;
 
+import chess.gui.Login;
+
 public class ClientReader implements Runnable{
+	
+	// class
+	Login login;
 	
 	Socket socket;
 	BufferedReader br;
@@ -16,22 +22,13 @@ public class ClientReader implements Runnable{
 	public ClientReader() {}
 	public ClientReader(Socket socket) {
 		this.socket = socket;
-		
 		try {
 			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			
-			Scanner s = new Scanner(System.in);
 			Thread t = new Thread(this);
 			t.start();
-			System.out.println("---- Thread run");
+			System.out.println("---- Thread run");			
 			
-			pw = new PrintWriter(socket.getOutputStream());
-			while(true) {
-				System.out.println("enter : ");
-				String str = s.next();
-				pw.println(str);
-				pw.flush();
-			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,13 +42,19 @@ public class ClientReader implements Runnable{
 		while(true) {
 			try {
 				if((msg = br.readLine()) != null) {
-					System.out.println(msg);
+					System.out.println("from Server : "+msg);
+					login.showMain();
 				}
-			} catch (IOException e) {
+			}catch (IOException e) {
 				e.printStackTrace();
+				break;
 			}
 		}
 		
+	}
+	
+	public void setLogin(Login login) {
+		this.login = login;
 	}
 	
 	

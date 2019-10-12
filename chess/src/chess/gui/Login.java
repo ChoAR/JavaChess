@@ -8,8 +8,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.*;
 
+import chess.client.ClientMain;
+import chess.client.ClientSender;
+
 public class Login extends JFrame {// 로그인화면
+	//Class
+	
+	ClientSender cs;
+
 	Image img = null;
+	
+	
+	
 
 	public Login() {
 		JPanel p = new JPanel();
@@ -55,6 +65,7 @@ public class Login extends JFrame {// 로그인화면
 		btn_register.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {// 회원가입창으로 이동
+				
 				System.out.println("회원가입 버튼 클릭됨");
 				Register register = new Register();
 			}
@@ -64,38 +75,39 @@ public class Login extends JFrame {// 로그인화면
 		btn_login.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e2) {
-				// TODO Auto-generated method stub
-				try {
-					String s;
-					String[] array;
-					BufferedReader bos = new BufferedReader(new FileReader("회원명단.txt"));
-					while ((s = bos.readLine()) != null) {
-						array = s.split("/");
-						if (tf_id.getText().equals(array[1]) && tf_pw.getText().equals(array[2])) {
-							JOptionPane.showMessageDialog(null, "로그인이 되었습니다!!");
-							ChessGUI2 cg = new ChessGUI2();
-							JFrame f = new JFrame("소켓을 활용한 1:1 체스게임");
-							f.setLayout(new BorderLayout());
-							f.add(cg.chessGame, BorderLayout.CENTER);
-							f.add(cg.chatting, BorderLayout.SOUTH);
-							f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-							f.pack();
-							f.setVisible(true);
-							f.setSize(1000, 1000);
-						} else {
-							JOptionPane.showMessageDialog(null, "로그인이 실패하였습니다.");
-						}
-					}
-					bos.close();
-					dispose();
-				} catch (IOException E10) {
-					E10.printStackTrace();
-				}
+				String id = tf_id.getText();
+				String pass = tf_pw.getText();
+				cs.sendMsg("100#"+id+"/"+pass);
+			//	showMain();
 			}
 		});
 	}
 	
-	public static void main(String[] args) {
-		Login login = new Login();
+	public void showMain() {
+		JOptionPane.showMessageDialog(null, "로그인이 되었습니다!!");
+		ChessGUI2 cg = new ChessGUI2();
+		cg.setSender(cs);
+		JFrame f = new JFrame("소켓을 활용한 1:1 체스게임");
+		f.setLayout(new BorderLayout());
+		f.add(cg.chessGame, BorderLayout.CENTER);
+		f.add(cg.chatting, BorderLayout.SOUTH);
+		f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		f.pack();
+		f.setVisible(true);
+		f.setSize(1000, 1000);
 	}
+	
+	public void notConnect() {
+		JOptionPane.showMessageDialog(null,"Server not Working.. \n It will closed.");
+		System.exit(0);
+	}
+	
+	
+
+	
+	public void setSender(ClientSender cs) {
+		this.cs = cs;
+	}
+	
+
 }

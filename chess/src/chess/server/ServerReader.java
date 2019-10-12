@@ -10,16 +10,18 @@ import java.util.Scanner;
 
 public class ServerReader implements Runnable{
 
+	//class
+	ServerSender ss;
+	//
 	Socket socket;
 	BufferedReader br;
-	
-	
 	
 	public ServerReader() {}
 	public ServerReader(Socket socket) {
 		try {
-			
 			this.socket = socket;
+			
+			///
 			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			
 			// Reader 만들고 Thread 생성
@@ -38,21 +40,21 @@ public class ServerReader implements Runnable{
 	public void run() {
 		int tag = 0;
 		String msg = "";
-		
+		System.out.println("socket = "+socket);
 		while(true) {
 			try {
 				if((msg = br.readLine())!= null) {
-					System.out.println(msg);
+					System.out.println("from Client : "+msg);
+					ss.sendAll(msg);
 				}
-			} catch(SocketException se) {
-				se.printStackTrace();
-				System.out.println("disconnected");
-			}catch (IOException e) {
+			}catch(Exception e) {
 				e.printStackTrace();
+				break;
 			}
 		}
-		
+	}	
+	
+	public void setSender(ServerSender ss) {
+		this.ss = ss;
 	}
-	
-	
 }

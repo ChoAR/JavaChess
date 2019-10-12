@@ -6,12 +6,17 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import chess.client.ClientSender;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 
 public class ChessGUI2 extends JFrame {
+	//class
+	ClientSender cs;
+	//
 	JPanel chessGame = new JPanel(); // Center
 	GridBagLayout gb;
 	GridBagConstraints gbc;
@@ -29,6 +34,7 @@ public class ChessGUI2 extends JFrame {
     JTextField chatField = new JTextField(70);
     JButton chatButton = new JButton("입력");
 	public ChessGUI2(){
+		
 		gb = new GridBagLayout();
 		gbc = new GridBagConstraints();
 		chessGame.setLayout(gb);
@@ -121,4 +127,7 @@ public class ChessGUI2 extends JFrame {
         f.setSize(1000,1000);
 	}
 	*/
+	public void setSender(ClientSender cs) {
+		this.cs = cs;
+	}
 }
