@@ -8,5 +8,5 @@ public class MainGui {
 		Login login = new Login();
 		ClientMain cm = new ClientMain(login);
 		cm.connect();
-	}
+	} 
 }

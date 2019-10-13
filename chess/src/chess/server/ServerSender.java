@@ -37,7 +37,7 @@ public class ServerSender{
 				pw.flush();
 				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				// TODO Auto-generated c atch block
 				e.printStackTrace();
 			}
 		}

@@ -78,7 +78,6 @@ public class Login extends JFrame {// 로그인화면
 				String id = tf_id.getText();
 				String pass = tf_pw.getText();
 				cs.sendMsg("100#"+id+"/"+pass);
-			//	showMain();
 			}
 		});
 	}
@@ -95,11 +94,17 @@ public class Login extends JFrame {// 로그인화면
 		f.pack();
 		f.setVisible(true);
 		f.setSize(1000, 1000);
+		this.setVisible(false);
 	}
 	
+	// failed Connect to Server
 	public void notConnect() {
-		JOptionPane.showMessageDialog(null,"Server not Working.. \n It will closed.");
+		JOptionPane.showMessageDialog(null,"Server not Working.. \nIt will closed.");
 		System.exit(0);
+	}
+	
+	public void denied() {
+		JOptionPane.showMessageDialog(null, "회원정보를 다시 확인하시오.");
 	}
 	
 	

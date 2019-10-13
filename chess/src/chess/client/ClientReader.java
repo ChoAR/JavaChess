@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 import chess.gui.Login;
 
@@ -36,21 +37,32 @@ public class ClientReader implements Runnable{
 	}
 	@Override
 	public void run() {
+		StringTokenizer st;
 		String msg = "";
 		int tag = 0;
-		
+		String content; 
 		while(true) {
 			try {
 				if((msg = br.readLine()) != null) {
-					System.out.println("from Server : "+msg);
-					login.showMain();
+					st = new StringTokenizer(msg, "#");
+					tag = Integer.parseInt(st.nextToken());
+					content = st.nextToken();
+					
+					switch(tag) {
+						case 100:	// Login Success. 
+							checkAuth(content);
+							break;
+						case 109:	// Login failed.
+							authDenied();
+					}		break;
+					
+					
 				}
 			}catch (IOException e) {
 				e.printStackTrace();
 				break;
 			}
 		}
-		
 	}
 	
 	public void setLogin(Login login) {
@@ -58,6 +70,13 @@ public class ClientReader implements Runnable{
 	}
 	
 	
-	
+	// Login 성공
+	public void checkAuth(String content) {
+		login.showMain();
+	}
+	// 로그인 실패
+	public void authDenied() {
+		login.denied();
+	}
 	
 }

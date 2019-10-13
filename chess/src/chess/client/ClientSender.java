@@ -26,7 +26,7 @@ public class ClientSender {
 	public void sendMsg(String msg) {
 		pw.println(msg);
 		pw.flush();
-	}
+	} 
 
 //	@Override
 //	public void run() {

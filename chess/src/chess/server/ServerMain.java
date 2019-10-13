@@ -6,6 +6,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 
+import chess.db.Connection;
+
 public class ServerMain {
 	
 	private static final int PORT = 12345;
@@ -14,6 +16,7 @@ public class ServerMain {
 	PrintWriter pw;
 	BufferedReader br;
 	SocketList sl;
+	Connection conn;
 	// 기본 생성자
 	public ServerMain() {
 		System.out.println("Launched Server");
@@ -23,6 +26,7 @@ public class ServerMain {
 	// 연결 초기화
 	public void connection() {
 		try {
+			conn = new Connection();
 			server = new ServerSocket(PORT);
 			
 			sl = new SocketList();
@@ -35,7 +39,9 @@ public class ServerMain {
 				ServerSender ss = new ServerSender(socket);
 				ServerReader sr = new ServerReader(socket);
 				sl.addUser(socket);
+				
 				sr.setSender(ss);
+				sr.setConnection(conn); 
 				ss.setList(sl);
 			}
 			

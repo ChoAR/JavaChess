@@ -13,15 +13,15 @@ public class Connection {
 	PreparedStatement pstm = null; 
 	
 	String url = "";
-	String user = "root";
-	String password = "1234";
+	String user = "marla";
+	String password = "Admin123!";
 	public Connection() {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			url =  "jdbc:mysql://localhost:3306/chess?serverTimezone=Asia/Seoul";
+			Class.forName("com.mysql.jdbc.Driver");
+			url = "jdbc:mysql://54.84.96.250:3306/chess?serverTimezone=Asia/Seoul";
 			System.out.println("Connected DB");
 		}catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		}	
 	}
 	
@@ -41,25 +41,22 @@ public class Connection {
 			while(rs.next()) {
 				id = rs.getString("id");
 				db_password = rs.getString("password");
-				db_nick = rs.getString("nick");
+				db_nick = rs.getString("nickname");
 			}
 			if(db_password.equals(pw)) {
 				check = 1;
+				return db_nick;
 			}else {
 				check = 0;
+				return "";
 			}
-			System.out.println("check >> " + check);
 		}catch (SQLException e) {
 			e.getStackTrace();
 		}catch (Exception e) {
 			e.getStackTrace();
 		}
 		
-		if(check == 1) {
-			return db_nick;
-		}else {
-			return "";
-		}
+		return "";
 	}
 	
 	//회원가입 기능
