@@ -72,12 +72,14 @@ public class ServerReader implements Runnable{
 	}	
 	
 	
+	
 	////Method////
-	public String doLogin(String msg) {
-		System.out.println("msg = " +  msg);
-		StringTokenizer st = new StringTokenizer(msg, "/");
+	public String doLogin(String content) {
+		System.out.println("msg = " +  content);
+		StringTokenizer st = new StringTokenizer(content, "/");
 		String id = st.nextToken();
 		String pass = st.nextToken();
+		
 		String result = conn.do_login(id, pass);
 		System.out.println("result = " +result);
 		String tag = "";

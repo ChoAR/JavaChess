@@ -99,7 +99,7 @@ public class Login extends JFrame {// 로그인화면
 	
 	// failed Connect to Server
 	public void notConnect() {
-		JOptionPane.showMessageDialog(null,"Server not Working.. \nIt will closed.");
+		JOptionPane.showMessageDialog(null,"Server not Working..\nIt will closed.");
 		System.exit(0);
 	}
 	

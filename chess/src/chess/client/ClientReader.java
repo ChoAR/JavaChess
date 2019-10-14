@@ -54,9 +54,8 @@ public class ClientReader implements Runnable{
 							break;
 						case 109:	// Login failed.
 							authDenied();
-					}		break;
-					
-					
+							break;
+					}	
 				}
 			}catch (IOException e) {
 				e.printStackTrace();
