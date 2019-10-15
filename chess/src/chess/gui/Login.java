@@ -15,9 +15,9 @@ public class Login extends JFrame {// 로그인화면
 	//Class
 	
 	ClientSender cs;
-
+		
 	Image img = null;
-	
+	public ChessGUI2 cg;
 	
 	
 
@@ -84,7 +84,7 @@ public class Login extends JFrame {// 로그인화면
 	
 	public void showMain() {
 		JOptionPane.showMessageDialog(null, "로그인이 되었습니다!!");
-		ChessGUI2 cg = new ChessGUI2();
+		cg = new ChessGUI2();
 		cg.setSender(cs);
 		JFrame f = new JFrame("소켓을 활용한 1:1 체스게임");
 		f.setLayout(new BorderLayout());
@@ -96,6 +96,7 @@ public class Login extends JFrame {// 로그인화면
 		f.setSize(1000, 1000);
 		this.setVisible(false);
 	}
+	
 	
 	// failed Connect to Server
 	public void notConnect() {

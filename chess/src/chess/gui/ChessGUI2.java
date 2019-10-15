@@ -9,6 +9,8 @@ import javax.swing.border.LineBorder;
 import chess.client.ClientSender;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
@@ -24,15 +26,17 @@ public class ChessGUI2 extends JFrame {
 	JPanel player1 = new JPanel(); // West
 	JPanel player2 = new JPanel(); // East
 	JPanel chatting = new JPanel(); // South
-	JPanel chattingInput = new JPanel(); // South - South	
+	JPanel chattingInput = new JPanel(); 
+	// South - South	
 	JButton[][] chessBoardSquares = new JButton[8][8];
 	Image[][] chessPieceImages= new Image[2][6];
     public static final int QUEEN = 0, KING = 1, ROOK = 2, KNIGHT = 3, BISHOP = 4, PAWN = 5;
     public static final int[] STARTING_ROW = { ROOK, KNIGHT, BISHOP, KING, QUEEN, BISHOP, KNIGHT, ROOK };
     public static final int BLACK = 0, WHITE = 1;
-    JTextArea chatArea = new JTextArea(10,50);
-    JTextField chatField = new JTextField(70);
-    JButton chatButton = new JButton("입력");
+   public JTextArea chatArea = new JTextArea(10,50);
+   public JTextField chatField = new JTextField(70);
+   public JButton chatButton = new JButton("입력");
+    
 	public ChessGUI2(){
 		
 		gb = new GridBagLayout();
@@ -106,6 +110,33 @@ public class ChessGUI2 extends JFrame {
 	    chattingInput.add(chatButton);
 	    chatting.add(chatArea, BorderLayout.CENTER);
 	    chatting.add(chattingInput, BorderLayout.SOUTH);
+	   /* btn_login.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e2) {
+				String id = tf_id.getText();
+				String pass = tf_pw.getText();
+				cs.sendMsg("100#"+id+"/"+pass);
+			}
+		});
+	}
+	JTextArea chatArea = new JTextArea(10,50);
+    JTextField chatField = new JTextField(70);
+    JButton chatButton = new JButton("입력");
+	*/
+	    chatButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("채팅 보내짐");
+				String chat = chatField.getText();
+				/*chatArea.append(enter);
+				chatArea.append(chat);
+				chatField.setText("");*/
+				cs.sendMsg("500#"+chat);
+			}
+	    	
+	    });
 	}
     public void gbinsert(JComponent c, int x, int y, int w, int h){
         gbc.gridx = x;
@@ -114,6 +145,7 @@ public class ChessGUI2 extends JFrame {
         gbc.gridheight = h;
         chessGame.add(c, gbc);
     }
+	
     /*
 	public static void main(String[] args) {
 		ChessGUI2 cg = new ChessGUI2();
@@ -127,6 +159,7 @@ public class ChessGUI2 extends JFrame {
         f.setSize(1000,1000);
 	}
 	*/
+  
 	public void setSender(ClientSender cs) {
 		this.cs = cs;
 	}

@@ -9,13 +9,14 @@ import java.net.SocketException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+import chess.gui.ChessGUI2;
 import chess.gui.Login;
 
 public class ClientReader implements Runnable{
 	
 	// class
 	Login login;
-	
+	//ChessGUI2 chessgui;
 	Socket socket;
 	BufferedReader br;
 	PrintWriter pw;
@@ -55,6 +56,12 @@ public class ClientReader implements Runnable{
 						case 109:	// Login failed.
 							authDenied();
 							break;
+						case 500:
+							System.out.println("case500chatting");
+							chatting(content);	// chat send Success.
+							break;
+						
+							
 					}	
 				}
 			}catch (IOException e) {
@@ -68,6 +75,14 @@ public class ClientReader implements Runnable{
 		this.login = login;
 	}
 	
+	public void chatting(String content) {
+		System.out.println("case500chatting2222");
+		
+		login.cg.chatArea.append(content + "\n");
+		login.cg.chatField.setText("");
+		
+		//chessgui.chatArea.append(content + "\n");
+	}
 	
 	// Login 성공
 	public void checkAuth(String content) {

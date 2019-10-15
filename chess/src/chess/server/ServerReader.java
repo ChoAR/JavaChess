@@ -16,11 +16,10 @@ public class ServerReader implements Runnable{
 	//class
 	ServerSender ss;
 	Connection conn;
-	
 	//
 	Socket socket;
 	BufferedReader br;
-	
+	String nickname = "";
 	public ServerReader() {}
 	public ServerReader(Socket socket) {
 		try {
@@ -60,8 +59,10 @@ public class ServerReader implements Runnable{
 						case 100 : 
 							doLogin(content);
 							break;
+						case 500 :
+							chatsend(content);
+							break;
 					}
-					
 					//ss.sendAll(msg);
 				}
 			}catch(Exception e) {
@@ -72,6 +73,25 @@ public class ServerReader implements Runnable{
 	}	
 	
 	
+	public String chatsend(String content) {
+		System.out.println("chat = " + content);
+		System.out.println("nickname:"+nickname + content);
+		
+		String allchat = nickname+":"+content;
+		System.out.println(allchat);
+		String tag = "";
+		if(allchat.equals("")) {
+			tag = "509#";
+			allchat = "채팅이 제대로 보내지지 않음.";
+		}
+		else {
+			tag = "500#";
+			ss.sendAll(tag+allchat);
+		}
+		//ss.sendMsg(tag+allchat);
+		return allchat;
+		
+	}
 	
 	////Method////
 	public String doLogin(String content) {
@@ -80,6 +100,7 @@ public class ServerReader implements Runnable{
 		String id = st.nextToken();
 		String pass = st.nextToken();
 		
+		
 		String result = conn.do_login(id, pass);
 		System.out.println("result = " +result);
 		String tag = "";
@@ -87,13 +108,12 @@ public class ServerReader implements Runnable{
 			tag = "109#";
 			result = "denied";
 		}else {
+			nickname = result;
 			tag = "100#";
 		}
-		ss.sendMsg(tag+result);
-		
+		ss.sendMsg(tag+result);	
 		return result ;
 	}
-	
 	
 	//setter
 	public void setConnection(Connection conn) {
