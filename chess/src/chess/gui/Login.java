@@ -1,4 +1,4 @@
-package chess;
+package chess.gui;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,33 +9,33 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-public class Login extends JFrame{//·Î±×ÀÎÈ­¸é
+public class Login extends JFrame{//ï¿½Î±ï¿½ï¿½ï¿½È­ï¿½ï¿½
 	Image img = null;
-	public ex1()
+	public Login()
 	{
 		try {
-			String path = ex1.class.getResource("").getPath();
+			String path = Login.class.getResource("").getPath();
 			File sourceimage = new File(path+"chessImage.png");
 			img = ImageIO.read(sourceimage);
 		} catch (IOException e) {
-			System.out.println("ÀÌ¹ÌÁöÆÄÀÏÀÌ ¾ø½À´Ï´Ù.");
+			System.out.println("ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 		}
 		JLabel label = new JLabel(new ImageIcon(img));
 		JPanel p = new JPanel();
         p.setLayout(null);
         add(label);
-		Label b2= new Label("¾ÆÀÌµð:");
+		Label b2= new Label("ï¿½ï¿½ï¿½Ìµï¿½:");
 		add(b2);
-		Label b3= new Label("ºñ¹Ð¹øÈ£:");
+		Label b3= new Label("ï¿½ï¿½Ð¹ï¿½È£:");
 		add(b3);
 		TextField b4 = new TextField();
 		add(b4);
 		TextField b5 = new TextField();
 		add(b5);
-		b5.setEchoChar('*');//¾ÏÈ£È­
-		JButton b6 = new JButton("·Î±×ÀÎ");
+		b5.setEchoChar('*');//ï¿½ï¿½È£È­
+		JButton b6 = new JButton("ï¿½Î±ï¿½ï¿½ï¿½");
 		add(b6);
-		JButton b7 = new JButton("È¸¿ø°¡ÀÔ");
+		JButton b7 = new JButton("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		add(b7);
 		
 		label.setBounds(0, 0, 600, 250);
@@ -48,30 +48,30 @@ public class Login extends JFrame{//·Î±×ÀÎÈ­¸é
 		add(p);
 		setSize(560, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("·Î±×ÀÎ È­¸é ");
+		setTitle("ï¿½Î±ï¿½ï¿½ï¿½ È­ï¿½ï¿½ ");
 		setVisible(true);
 		b7.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {//È¸¿ø°¡ÀÔÃ¢À¸·Î ÀÌµ¿
+			public void actionPerformed(ActionEvent e) {//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 				// TODO Auto-generated method stub
-				ex2 f2= new ex2();
+				Register f2= new Register();
 			}
 		});;
 		b6.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e2) {//·Î±×ÀÎ ÇÒ¶§ 
+			public void actionPerformed(ActionEvent e2) {//ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Ò¶ï¿½ 
 				// TODO Auto-generated method stub
 				try{
 					String s;
 					String[] array;
-					BufferedReader bos = new BufferedReader(new FileReader("È¸¿ø¸í´Ü.txt"));
+					BufferedReader bos = new BufferedReader(new FileReader("È¸ï¿½ï¿½ï¿½ï¿½ï¿½.txt"));
 					while((s=bos.readLine())!=null){
 						array=s.split("/");
 					if(b4.getText().equals(array[1])&&b5.getText().equals(array[2]))
 					{
-						JOptionPane.showMessageDialog(null, "·Î±×ÀÎÀÌ µÇ¾ú½À´Ï´Ù!!");
+						JOptionPane.showMessageDialog(null, "ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!!");
 						ChessGUI2 cg = new ChessGUI2();
-				        JFrame f = new JFrame("¼ÒÄÏÀ» È°¿ëÇÑ 1:1 Ã¼½º°ÔÀÓ");
+				        JFrame f = new JFrame("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½ï¿½ï¿½ 1:1 Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 				        f.setLayout(new BorderLayout());
 				        f.add(cg.chessGame, BorderLayout.CENTER);
 				        f.add(cg.chatting, BorderLayout.SOUTH);
@@ -82,9 +82,10 @@ public class Login extends JFrame{//·Î±×ÀÎÈ­¸é
 					}
 					else 
 					{
-						JOptionPane.showMessageDialog(null, "·Î±×ÀÎÀÌ ½ÇÆÐÇÏ¿´½À´Ï´Ù.");
+						JOptionPane.showMessageDialog(null, "ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 					}
 					}
+					
 					bos.close();
 					dispose();
 				}catch (IOException E10){
@@ -93,11 +94,11 @@ public class Login extends JFrame{//·Î±×ÀÎÈ­¸é
 			}
 		});
 	}
-	/*
-	 * public static void main(String[] args) {//·Î±×ÀÎÈ­¸éÀ¸·Î ½ÇÇà // TODO Auto-generated
-	 * method stub Login f = new Login();
-	 * 
-	 * }
-	 */
+	
+	  public static void main(String[] args) {//ï¿½Î±ï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ // TODO Auto-generated
+		  Login f = new Login();
+	  
+	  }
+	 
 }
 

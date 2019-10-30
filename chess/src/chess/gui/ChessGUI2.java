@@ -1,5 +1,5 @@
-package chess;
-// ÃÊ±âÈ­¸é ¸¸µéÀÚ!
+package chess.gui;
+// ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
@@ -33,7 +33,7 @@ public class ChessGUI2 extends JFrame implements ActionListener{
     JLabel WhitePlayer = new JLabel("WhitePlayer : ");
     JLabel Name1 = new JLabel("Name1");
     JLabel Name2 = new JLabel("Name2");
-    JButton chatButton = new JButton("ÀÔ·Â");
+    JButton chatButton = new JButton("ï¿½Ô·ï¿½");
     JButton GoldStart = new JButton("Ready");
     JButton WhiteStart = new JButton("Ready");
     JButton GiveUp1 = new JButton("GiveUp");
@@ -48,7 +48,7 @@ public class ChessGUI2 extends JFrame implements ActionListener{
         JToolBar tools = new JToolBar();
         tools.setFloatable(false);
         tools.setBackground(Color.GRAY);
-        gbinsert(tools, 0, 0, 1, 1);
+        gbinsert(tools, 1, 0, 1, 1);
         Action newGameAction = new AbstractAction("New") {
 
             @Override

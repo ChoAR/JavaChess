@@ -1,18 +1,18 @@
-package chess;
+package chess.gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import javax.swing.*;
 import java.awt.*;
-public class Register extends JFrame {//È¸¿ø°¡ÀÔÈ­¸é
+public class Register extends JFrame {//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½
 	public Register(){
 		  	JPanel p = new JPanel();
 		  	Label l1= new Label("ID");	
 	        Label l2 = new Label("PASSWORD");
-	        Label l3= new Label("PASSWORD È®ÀÎ");
-	        Label l4 = new Label("´Ð³×ÀÓ");
-		/* Label l5 = new Label("´Ð³×ÀÓ"); */
+	        Label l3= new Label("PASSWORD È®ï¿½ï¿½");
+	        Label l4 = new Label("ï¿½Ð³ï¿½ï¿½ï¿½");
+		/* Label l5 = new Label("ï¿½Ð³ï¿½ï¿½ï¿½"); */
 	        add(l1);
 	        add(l2);
 	        add(l3);
@@ -29,8 +29,8 @@ public class Register extends JFrame {//È¸¿ø°¡ÀÔÈ­¸é
 	        add(t4);
 		/* add(t5); */
 	        t3.setEchoChar('*');
-	        JButton j1 = new JButton("ÀúÀå");
-	        JButton j2 = new JButton("Ãë¼Ò");
+	        JButton j1 = new JButton("ï¿½ï¿½ï¿½ï¿½");
+	        JButton j2 = new JButton("ï¿½ï¿½ï¿½");
 	        add(j1);
 	        add(j2);
 	        
@@ -50,30 +50,30 @@ public class Register extends JFrame {//È¸¿ø°¡ÀÔÈ­¸é
 	        j2.setBounds(250, 240, 80, 30); 
 	    add(p);
 		setSize(450,350);
-		setTitle("È¸¿ø°¡ÀÔ");
+		setTitle("È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        setVisible(true);
        j1.addActionListener(new ActionListener() {
 		@Override
-		 public void actionPerformed(ActionEvent T) {//È¸¿ø°¡ÀÔ µ¥ÀÌÅÍ ÀúÀå
+		 public void actionPerformed(ActionEvent T) {//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			try{
-				BufferedWriter bos = new BufferedWriter(new FileWriter("È¸¿ø¸í´Ü.txt",true));
+				BufferedWriter bos = new BufferedWriter(new FileWriter("È¸ï¿½ï¿½ï¿½ï¿½ï¿½.txt",true));
 				bos.write(t1.getText()+"/");
 				bos.write(t2.getText()+"/");
 				bos.write(t3.getText()+"/");
 				bos.write(t4.getText()+"\r\n");
 					/* bos.write(t5.getText()+"\r\n"); */
 				bos.close();
-				JOptionPane.showMessageDialog(null, "È¸¿ø°¡ÀÔÀ» ÃàÇÏÇÕ´Ï´Ù!!");
+				JOptionPane.showMessageDialog(null, "È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½!!");
 				dispose();
 			}catch (Exception ex){
-				JOptionPane.showMessageDialog(null, "È¸¿ø°¡ÀÔ¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.");
+				JOptionPane.showMessageDialog(null, "È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			}
 		 } 
 	   });
        j2.addActionListener(new ActionListener() {
    		@Override
-   		 public void actionPerformed(ActionEvent T) {//È¸¿ø°¡ÀÔ µ¥ÀÌÅÍ ÀúÀå
+   		 public void actionPerformed(ActionEvent T) {//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
    			dispose();
    		 } 
    	   });
